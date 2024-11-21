@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "362951433020",
+    "firebase_url": "https://react-native-course-711b3-default-rtdb.firebaseio.com",
+    "project_id": "react-native-course-711b3",
+    "storage_bucket": "react-native-course-711b3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362951433020:android:0491eabf920ce8912e1c39",
+        "android_client_info": {
+          "package_name": "com.venky_dev.Coffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362951433020-s1j9ngkimr3beoa76uevf5dpqqneumja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.venky_dev.Coffee",
+            "certificate_hash": "aa32e3b92d4fde66f7de0623bbe4dc265ca672b0"
+          }
+        },
+        {
+          "client_id": "362951433020-5a1s1mp07tf5c8kabp59r1rjhemugakf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKZrlKuAlTFCKF_77hGKeMZ3Im_uYOU5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362951433020-5a1s1mp07tf5c8kabp59r1rjhemugakf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
