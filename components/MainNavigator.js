@@ -119,9 +119,9 @@ const MainNavigator = () => {
 
   return (
     <NavigationContainer>
-      <AuthenticatedStack></AuthenticatedStack>
+      {/* <AuthenticatedStack></AuthenticatedStack> */}
       {authCtx.isLoading && <LoadingOverlay />}
-      {/* {!authCtx.isAuthenticated ? <AuthStack /> : <AuthenticatedStack />} */}
+      {!authCtx.isAuthenticated ? <AuthStack /> : <AuthenticatedStack />}
     </NavigationContainer>
   );
 };

@@ -1,4 +1,4 @@
-import { Image, Text, View, ScrollView } from "react-native";
+import { Image, Text, View, ScrollView, Alert } from "react-native";
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { CoffeeItems } from "../data/dummy-data";
 import GlobalStyles from "../helper/GlobalStyles";
@@ -7,8 +7,39 @@ import OutlinedButton from "../components/IconicButton";
 import HorizentalLine from "../components/HorizentalLine";
 import ButtonComponent from "../components/ButtonComponent";
 import { useState } from "react";
+import RazorpayCheckout from 'react-native-razorpay';
 
 const CheckOutScreen = () => {
+
+    const handlePayment = () => {
+        console.log('RazorpayCheckout:', RazorpayCheckout);
+        
+        var options = {
+            description: 'Credits towards consultation',
+            image: 'https://i.imgur.com/3g7nmJC.png',
+            currency: 'INR',
+            key: 'rzp_test_FChFjA06oHTdte',
+            amount: '5000',
+            name: 'foo',
+            prefill: {
+                email: 'void@razorpay.com',
+                contact: '9191919191',
+                name: 'Razorpay Software'
+            },
+            theme: { color: '#F37254' }
+        }
+        RazorpayCheckout.open(options).then((data) => {
+            alert(`Success: ${data.razorpay_payment_id}`);
+        }).catch((error) => {
+            alert(`Error: ${error.code} | ${error.description}`);
+            console.log(error);
+            
+        });
+
+    }
+
+
+
     const route = useRoute();
     const navigation = useNavigation();
     const { CoffeItemId } = route.params;
@@ -90,7 +121,7 @@ const CheckOutScreen = () => {
                             borderRadius: 10,
                             padding: 10,
                             backgroundColor: Colors.color_5,
-                            borderColor: Colors.color_2,
+                            borderColor: Colors.color_1,
                             marginTop: 10,
                         }}
                     >
@@ -114,9 +145,9 @@ const CheckOutScreen = () => {
             <View style={[GlobalStyles.row, { justifyContent: "space-between", padding: 15, backgroundColor: Colors.color_1 }]}>
                 <Text style={[GlobalStyles.title, { color: Colors.color_5 }]}>Total: {totalPrice} Rs</Text>
                 <ButtonComponent
-                    onPress={() => navigation.replace("CheckOutScreen", { CoffeItemId: displayCoffe.id })}
+                    onPress={handlePayment}
                     backgroundColor={Colors.color_6}
-                    width="45%"
+                    width="37%"
                 >
                     Order Now
                 </ButtonComponent>
