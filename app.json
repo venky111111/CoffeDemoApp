@@ -2,10 +2,7 @@
   "expo": {
     "plugins": [
       [
-        "@react-native-google-signin/google-signin",
-        {
-          "iosUrlScheme": "com.googleusercontent.apps._some_id_here_"
-        }
+        "@react-native-google-signin/google-signin"
       ]
     ],
     "name": "Coffee",
@@ -33,6 +30,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "doctor": {
+    "reactNativeDirectoryCheck": {
+      "listUnknownPackages": false
+    }
     },
     "extra": {
       "eas": {

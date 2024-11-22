@@ -1,4 +1,4 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import Colors from '../helper/GlobalColors';
 import { useContext } from 'react';
 import { AuthContext } from '../store/auth-context';
@@ -7,6 +7,7 @@ import SearchWithButton from '../components/SearchWithButton';
 import ImageContainer from '../components/ImageContainer';
 import { CoffeeItems } from '../data/dummy-data';
 import CoffeeItem from '../components/CoffeItem';
+
 
 function HomeScreen() {
   const authCtx = useContext(AuthContext);

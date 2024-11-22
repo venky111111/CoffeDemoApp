@@ -2,24 +2,26 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../helper/GlobalColors";
 import { Ionicons } from '@expo/vector-icons';
 import GlobalStyles from "../helper/GlobalStyles";
-import IconicButton from "./IconicButton";
+import { useNavigation } from "@react-navigation/native";
 
-const CoffeeItem = ({ title, imageUrl, startRating }) => {
+const CoffeeItem = ({ title, imageUrl, startRating, id }) => {
+
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={styles.card}
       activeOpacity={0.8}
-      onPress={() => console.log(`${title} clicked!`)} // Example press handler
-    >
+      onPress={() => navigation.navigate('DetailsScreen', { CoffeItemId: id})} >
       <View style={styles.imageContainer}>
         <Image source={{ uri: imageUrl }} style={styles.image} />
       </View>
       <View style={styles.content}>
-        <Text style={styles.title}>{title}</Text>
-        <View style={styles.row}>
-          <View style={styles.ratingContainer}>
-            <Text style={[GlobalStyles.nameText, {color: Colors.color_6}]}>{startRating}</Text>
-            <Ionicons name="star-sharp" size={20} color={Colors.color_7} />
+        <Text style={GlobalStyles.title}>{title}</Text>
+        <View style={GlobalStyles.row}>
+          <View style={GlobalStyles.ratingContainer}>
+            <Text style={[GlobalStyles.title, {color: Colors.color_6}]}>{startRating}</Text>
+            <Ionicons name="star-sharp" size={22} color={Colors.color_7} />
           </View>
           <TouchableOpacity style={styles.addIconContainer}>
             <Ionicons name="arrow-forward-circle" size={24} color={Colors.color_5} />
@@ -65,21 +67,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 5,
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  ratingText: {
-    fontSize: 14,
-    color: '#666',
-    marginRight: 4,
-  },
+  
   addIconContainer: {
     backgroundColor: Colors.color_1,
     padding: 8,

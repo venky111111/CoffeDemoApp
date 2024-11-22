@@ -32,7 +32,7 @@ function FlashScreen() {
                     Welcome to our cozy coffee corner, where every cup is a delightful for you.
                 </Text>
             </View>
-            <View style={styles.buttonContainer}>   
+            <View style={GlobalStyles.buttonContainer}>   
                 <ButtonComponent onPress={screenChangeHandler} backgroundColor = {Colors.color_1}>Get Started</ButtonComponent>
             </View>
         </View>
@@ -61,10 +61,5 @@ const styles = StyleSheet.create({
     adj: {
         marginHorizontal: 20,
     },
-    buttonContainer: {
-        width: "100%",
-        alignItems: "center",
-        marginBottom: 20,
-        paddingHorizontal: 20,
-    },
+    
 });

@@ -2,6 +2,11 @@ import { StyleSheet } from "react-native"
 import Colors from "./GlobalColors"
 
 const GlobalStyles = StyleSheet.create({
+  container1: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#fff',
+  },
     button: {
         width: '100%',
       },
@@ -22,10 +27,16 @@ const GlobalStyles = StyleSheet.create({
       },
       nameText: {
         color: Colors.color_5,
-        fontSize: 15,
+        fontSize: 17,
         textAlign:"center",
-        fontFamily: "Sora_600SemiBold", 
-       
+        fontFamily: "Sora_100Thin",        
+      },
+      title: {
+        fontSize: 16,
+        color: '#333',
+        textAlign: 'center',
+        marginBottom: 10,
+        fontFamily: 'Sora_600SemiBold'
       },
       blurContainer: {
         borderRadius: 12,
@@ -40,8 +51,30 @@ const GlobalStyles = StyleSheet.create({
         color: Colors.color_4,
         fontFamily: "Sora_100Thin", 
         marginBottom: 20,
-        fontSize: 15
+        fontSize: 16
 
+    },
+    imageItem: {
+      width: '100%',
+      height: '50%',
+      borderRadius: 10,
+      marginBottom: 20,
+      resizeMode: "cover",
+    },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: 10,
+    },
+    ratingContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    ratingText: {
+      fontSize: 14,
+      color: '#666',
+      marginRight: 4,
     },
     card: {
         backgroundColor: Colors.color_1,
@@ -95,6 +128,12 @@ const GlobalStyles = StyleSheet.create({
         height: '100%',
     
       },
+      buttonContainer: {
+        width: "100%",
+        alignItems: "center",
+        marginBottom: 20,
+        paddingHorizontal: 20,
+    },
 })
 
 export default GlobalStyles

@@ -2,9 +2,7 @@ import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import FlashScreen from "../Screens/FlashScreen";
-import LoginScreen from "../Screens/LoginScreen";
 import AuthScreen from "../Screens/AuthScreen";
 import SignInScreen from "../Screens/SignInScreen";
 import HomeScreen from "../Screens/HomeScreen";
@@ -13,7 +11,9 @@ import LoadingOverlay from "./LoadingOverlay";
 import { AuthContext } from "../store/auth-context";
 import IconButton from "../helper/IconButton";
 import Colors from "../helper/GlobalColors";
-import Icon from "react-native-vector-icons/Ionicons"; // For Tab Icons
+import { Ionicons } from '@expo/vector-icons';
+import DetailsScreen from "../Screens/DetailsScreen";
+import CheckOutScreen from "../Screens/CheckOutScreen";
 
 const BottomStack = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -48,39 +48,35 @@ const MainNavigator = () => {
     );
   }
 
-  function BottomNavi() {
+  function BottomTabs() {
     return (
-      <BottomStack.Navigator
-        screenOptions={{
-          tabBarActiveTintColor: Colors.color_6,
-          tabBarInactiveTintColor: Colors.color_4,
-          tabBarStyle: { backgroundColor: Colors.color_1 },
-        }}
-      >
+      <BottomStack.Navigator screenOptions={{ tabBarActiveTintColor: Colors.color_8 }}>
         <BottomStack.Screen
-          name="HomeBottomScreen"
+          name="Home"
           component={HomeScreen}
           options={{
-            headerLeft: () => null,
-            headerTitle: "",
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="home-outline" color={color} size={size} />
-            ),
             headerStyle: { backgroundColor: Colors.color_6 },
-            headerTintColor: "white",
-            contentStyle: { backgroundColor: Colors.color_4 },
+            headerLeft: () => null,
+            headerTintColor: Colors.color_2,
+            headerTitle: "",
+            title: "Home",
+            headerRight: ({ tintColor }) => (
+              <IconButton icon="exit" color={tintColor} size={24} onPress={authCtx.logout} />
+            ),
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="home" color={color} size={size} />
+            ),
           }}
         />
         <BottomStack.Screen
-          name="ProfileBottomScreen"
+          name="Profile"
           component={UpdateProfileScreen}
           options={{
-            headerLeft: () => null,
-            headerTitle: "",
+            title: "Profile",
+            headerTitleAlign: "center",
             tabBarIcon: ({ color, size }) => (
-              <Icon name="person-outline" color={color} size={size} />
+              <Ionicons name="person-sharp" color={color} size={size} />
             ),
-            headerStyle: { backgroundColor: Colors.color_6 },
           }}
         />
       </BottomStack.Navigator>
@@ -89,39 +85,47 @@ const MainNavigator = () => {
 
   function AuthenticatedStack() {
     return (
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: Colors.color_6 },
-          headerTintColor: "white",
-          contentStyle: { backgroundColor: Colors.color_4 },
-        }}
-      >
+      <Stack.Navigator>
         <Stack.Screen
-          name="HomeScreen"
-          component={BottomNavi}
+          name="Tabs"
+          component={BottomTabs}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Loading"
+          component={LoadingOverlay}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="DetailsScreen"
+          component={DetailsScreen}
           options={{
-            headerLeft: () => null,
-            headerTitle: "",
-            headerRight: ({ tintColor }) => (
-              <IconButton
-                icon="exit-outline"
-                color={tintColor}
-                size={24}
-                onPress={authCtx.logout}
-              />
-            ),
+            title: "Details",
+            headerStyle: { backgroundColor: Colors.color_6 },
+            headerTintColor: Colors.color_2,
+            headerTitleAlign: 'center'
           }}
         />
+        <Stack.Screen name="CheckOutScreen" component={CheckOutScreen} options={{
+            title: "Order",
+            headerStyle: { backgroundColor: Colors.color_6 },
+            headerTintColor: Colors.color_2,
+            headerTitleAlign: 'center'
+
+          }} />
       </Stack.Navigator>
     );
   }
 
   return (
     <NavigationContainer>
-      {authCtx.isLoading && <LoadingOverlay />} {/* Global Loading State */}
-      {!authCtx.isAuthenticated ? <AuthStack /> : <AuthenticatedStack />}
+      <AuthenticatedStack></AuthenticatedStack>
+      {authCtx.isLoading && <LoadingOverlay />}
+      {/* {!authCtx.isAuthenticated ? <AuthStack /> : <AuthenticatedStack />} */}
     </NavigationContainer>
   );
 };
 
 export default MainNavigator;
+
+

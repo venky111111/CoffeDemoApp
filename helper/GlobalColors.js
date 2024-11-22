@@ -5,7 +5,8 @@ const Colors = {
     color_4: '#E3E3E3',
     color_5: '#F9F2ED',
     color_6: '#000000',
-    color_7: '#edcc0f'
+    color_7: '#edcc0f',
+    color_8: '#321811'
         
 
 }
